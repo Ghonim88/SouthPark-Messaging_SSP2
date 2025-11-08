@@ -912,118 +912,12 @@ docker network inspect southpark-messaging_southpark-network
 
 ## 🎁 Bonus: Random Message Generator
 
-Create a simple HTML page that sends random South Park messages:
+Already Created a simple HTML page that sends random South Park messages:
 
-### File: `test-client.html`
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>South Park Message Sender</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #f0f0f0;
-        }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        button {
-            background: #4CAF50;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            width: 100%;
-        }
-        button:hover {
-            background: #45a049;
-        }
-        #result {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 5px;
-            display: none;
-        }
-        .success {
-            background: #d4edda;
-            color: #155724;
-        }
-        .error {
-            background: #f8d7da;
-            color: #721c24;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>🏔️ South Park Message Sender</h1>
-        <p>Click the button to send a random South Park message!</p>
-        <button onclick="sendRandomMessage()">Send Random Message</button>
-        <div id="result"></div>
-    </div>
-
-    <script>
-        const messages = [
-            { author: "Cartman", body: "Respect my authoritah!" },
-            { author: "Kyle", body: "Dude, this is pretty sweet!" },
-            { author: "Stan", body: "Oh my God, they killed Kenny!" },
-            { author: "Kenny", body: "Mmmph mmph!" },
-            { author: "Butters", body: "Oh hamburgers!" },
-            { author: "Randy", body: "I thought this was America!" },
-            { author: "Mr. Garrison", body: "Mkay, that's bad, mkay" },
-            { author: "Chef", body: "Hello there, children!" }
-        ];
-
-        async function sendRandomMessage() {
-            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
-            const resultDiv = document.getElementById('result');
-            
-            try {
-                const response = await fetch('http://localhost:8080/messages', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(randomMsg)
-                });
-
-                const data = await response.json();
-                
-                resultDiv.className = response.ok ? 'success' : 'error';
-                resultDiv.style.display = 'block';
-                resultDiv.innerHTML = `
-                    <strong>${randomMsg.author}:</strong> "${randomMsg.body}"<br>
-                    <small>${data.message || data.error}</small>
-                `;
-            } catch (error) {
-                resultDiv.className = 'error';
-                resultDiv.style.display = 'block';
-                resultDiv.innerHTML = `<strong>Error:</strong> ${error.message}`;
-            }
-        }
-
-        // Auto-send every 5 seconds (optional)
-        // setInterval(sendRandomMessage, 5000);
-    </script>
-</body>
-</html>
-```
-
+## File: `Bonus.html`
 **Usage:**
-1. Save as `test-client.html` in the project root
-2. Open in browser: `file:///path/to/test-client.html`
+1. Saved as `Bonus.html` in the project root
+2. Open in browser: `file:///path/to/Bonus.html`
 3. Click "Send Random Message" button
 4. Watch Python consumer logs: `docker-compose logs -f python-consumer`
 
@@ -1042,13 +936,7 @@ Create a simple HTML page that sends random South Park messages:
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - Your GitHub/Email
-
----
-
-## 📝 License
-
-This project is created for educational purposes as part of the SSP2 Assignment.
+- **Abdelrahman Ghonim_(695857)** 
 
 ---
 
@@ -1058,19 +946,6 @@ This project is created for educational purposes as part of the SSP2 Assignment.
 - RabbitMQ documentation: https://www.rabbitmq.com/
 - Go documentation: https://go.dev/doc/
 - Python Pika documentation: https://pika.readthedocs.io/
-
----
-
-## 📞 Support
-
-If you encounter any issues:
-
-1. Check the [Troubleshooting](#troubleshooting) section
-2. Review Docker logs: `docker-compose logs`
-3. Verify all prerequisites are installed
-4. Ensure ports 8080, 5672, and 15672 are not in use
-
-For additional help, contact your instructor or refer to the official documentation of each technology.
 
 ---
 
