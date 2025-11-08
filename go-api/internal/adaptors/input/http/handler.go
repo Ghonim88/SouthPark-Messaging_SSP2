@@ -78,7 +78,7 @@ func (h *MessageHandler) PostMessage(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(MessageResponse{
 			Success: false,
-			Error:   "Missing author or body",
+			Error:   "Both 'author' and 'body' fields are required",
 		})
 		return
 	}
