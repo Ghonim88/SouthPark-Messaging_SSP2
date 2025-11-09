@@ -10,8 +10,8 @@ import (
 	"time"
 
 	"southpark-api/config"
-	httpAdapter "southpark-api/internal/adaptors/input/http"
-	"southpark-api/internal/adaptors/output/rabbitmq"
+	httpAdapter "southpark-api/internal/adapters/input/http"
+	"southpark-api/internal/adapters/output/rabbitmq"
 	"southpark-api/internal/core/services"
 )
 

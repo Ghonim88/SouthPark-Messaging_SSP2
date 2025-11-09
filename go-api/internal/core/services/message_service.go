@@ -14,6 +14,7 @@ type messageService struct {
 
 // NewMessageService creates a new instance of messageService
 // This follows Dependency Injection - we inject the MessagePublisher (adapter)
+// into the service, allowing for loose coupling and easier testing. and keep service independent from rabbitmq.
 func NewMessageService(publisher ports.MessagePublisher) ports.MessageService {
 	return &messageService{
 		publisher: publisher,

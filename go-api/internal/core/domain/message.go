@@ -8,9 +8,9 @@ import (
 
 // Message represents a South Park character message
 type Message struct {
-	Author    string    `json:"author"`
-	Body      string    `json:"body"`
-	SentAt   time.Time `json:"sent_at"`
+	Author string    `json:"author"`
+	Body   string    `json:"body"`
+	SentAt time.Time `json:"sent_at"`
 }
 
 // NewMessage creates a new Message instance with validation
@@ -22,9 +22,9 @@ func NewMessage(author, body string) (*Message, error) {
 		return nil, errors.New("body is required")
 	}
 	return &Message{
-		Author:  author,
-		Body:    body,
-		SentAt:  time.Now(),
+		Author: author,
+		Body:   body,
+		SentAt: time.Now(),
 	}, nil
 }
 
